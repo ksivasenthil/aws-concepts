@@ -1,0 +1,5 @@
+g.V('Instance').addE('NEEDS').to(g.V('KeyPair')).property('notes', 'Linux instance does not have a password. It rather has a key-pair associated which has to be used for logging in.Uses public-key cryptography for loging in to Instance.Specific for a region. Thus, an instance in another region where KeyPair is not created cannot use the KeyPair. A new one will be required.')
+g.V('KeyPair').property(list, 'key-phrases', 'Supports the file format of pem for OpenSSH and ppk for PuTTY application.')
+g.V('Instance').addE('NEEDS').to(g.V('SecurityGroup')).property('notes', 'SecurityGroup association are region specific.')
+g.V('SecurityGroup').property(list, 'key-phrases', 'Rules in security group help define the allowed/dis-allowed inbound or outbound traffic.')
+g.V('SecurityGroup').property(list, 'best-practices', 'Do not allow SSH access from all IPv4 addresses (0.0.0.0/0) to instance, except for testing purposes and only for a short time.')
