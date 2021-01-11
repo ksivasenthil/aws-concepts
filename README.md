@@ -30,7 +30,7 @@ I will work backwards and upate them here over time. Keep a watch for commit mes
 
 Such commits will have messages - `# Adding back-dated files`
 
-# Order for script execution
+# order for script execution
 
 For the time being due to absence of other better alternative order in which the script files have to executed are listed here - 
 
