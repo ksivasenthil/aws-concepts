@@ -38,3 +38,4 @@ For the time being due to absence of other better alternative order in which the
   2. RootVolume-u0.groovy
   3. LaunchingEc2-u0.groovy
   4. QuickStartEc2-u0.groovy
+  5. BestPractices-EC2-u0.groovy
