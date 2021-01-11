@@ -1,6 +1,6 @@
 g.V('AMI').property(list, 'Amazon Linux 2', 'Server side support for all versions of SSL is disabled by default')
 g.V('AMI').property(list, 'Amazon Linux 2', 'TLS 1.3 is not installed by default')
-g.V('AMI').property(list, 'Amazon Linux 2', g.V('Instance').properties('troubleshooting').hasValue(containing('Linux 2')).value())
+g.V('AMI').property(list, 'Amazon Linux 2', 'To check if AMI is of Amazon Linux 2, issue the command `sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2`. One should not receive an error. In case there is an error like ` sudo: amazon-linux-extras: command not found `, then it is not Amazon Linux 2')
 g.V('Instance').properties('troubleshooting').hasValue(containing('Linux 2')).drop()
 g.V('AMI').property(list, 'Amazon Linux 2', 'Self signed TLS certificate are acceptable for troubleshooting. For production, self signed certificate are not recommended.')
 g.V('AMI').property(list, 'Amazon Linux 2', 'To install latest version of TLS use the command `sudo yum install -y mod_ssl`')
