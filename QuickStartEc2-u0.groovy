@@ -1,0 +1,2 @@
+g.V('Instance').outE('NEEDS').where(otherV().hasId('KeyPair')).property(single, 'notes', 'Linux instance does not have a password. It rather has a key-pair associated which has to be used for logging in. Uses public-key cryptography for loging in to Instance. KeyPairs are specific to a region. Without a KeyPair Linux instances cannot be connected.')
+g.V('Instance').property(list, 'key-phrases', 'You cannot connect after terminating the instance.')
