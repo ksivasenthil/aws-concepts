@@ -1,0 +1,5 @@
+g.V('Instance').property(list, 'troubleshooting', 'To check if AMI is of Amazon Linux 2, issue the command `sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2`. One should not receive an error. In case there is an error like ` sudo: amazon-linux-extras: command not found `, then it is not Amazon Linux 2')
+g.V('Instance').property(list, 'best-practices', 'By default many distribution of AMI\'s have firewalls which block public http ports. Explicit allow in the instance firewall should be enabled to run public http server in such instances')
+g.V('Instance').property(list, 'troubleshooting', '/var/www/html does not by default allow ec2-user to modify files. To accomplish that run the command `sudo usermod -a -G apache ec2-user` to add the ec2-user to the group which has access to that folder.')
+g.V('Instance').property(list, 'best-practices', 'Always enable HTTPS on instance which is exposed to web as public web server.')
+g.V('Instance').property(list, 'troubleshooting', 'Run the command `sudo systemctl is-enabled httpd` to check if Apache web server is running in the instance.')
