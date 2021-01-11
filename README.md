@@ -40,3 +40,5 @@ For the time being due to absence of other better alternative order in which the
   4. QuickStartEc2-u0.groovy
   5. BestPractices-EC2-u0.groovy
   6. BasicTutorial-u0.groovy
+  7. BasicTutorial-u1.groovy
+  8. BasicTutorial-u2.groovy
