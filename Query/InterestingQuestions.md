@@ -35,7 +35,10 @@ Intent is to put to use the valuable knowledge compiled so-far. Particularly whe
 
 First let us find if we have some vertex for Amazon Linux 2 instance - 
 
-    g.V().has('name', containing('Linux 2')).values('id', 'name')
+    g.V().
+    has('name', 
+      containing('Linux 2')).
+    values('id', 'name')
 
 This will yield the result
 
@@ -48,7 +51,10 @@ Also, the question is about determining the steps involved in a specific process
 
 We are thus interested in the edges from the above discovered vertex.
 
-    g.V('AmzLinux2Tls').outE().values('label').dedup()
+    g.V('AmzLinux2Tls').
+    outE().
+    values('label').
+    dedup()
 
 This yields the result 
 
@@ -60,7 +66,10 @@ We can inspect both but by the look of it we can guess `NEXT` is of more relevan
 
 Let us now see what is/are connected to `NEXT`
 
-    g.V('AmzLinux2Tls').outE('NEXT').inV().values('id', 'name', 'label')
+    g.V('AmzLinux2Tls').
+    outE('NEXT').
+    inV().
+    values('id', 'name', 'label')
 
 This will yield a result like the following 
 
@@ -75,7 +84,10 @@ So, we are interested in finding what is the `NEXT` step after `Check Apache Web
 
 We can do that by
 
-    g.V('AmzLinux2Tls-1').outE('NEXT').inV().values('id', 'name', 'label')
+    g.V('AmzLinux2Tls-1').
+    outE('NEXT').
+    inV().
+    values('id', 'name', 'label')
 
 The above query yields  - 
 
@@ -85,7 +97,13 @@ The above query yields  -
 
 Now, let us complete this by fetching all steps with a combination of `until` and `repeat` step modifier in gremlin.
 
-    g.V('AmzLinux2Tls').until(has('process-step')).repeat(out('NEXT')).emit().values('id')
+    g.V('AmzLinux2Tls').
+    until(
+      has('process-step')).
+    repeat(
+      out('NEXT')).
+    emit().
+    values('id')
 
 This should yield the following - 
 
@@ -99,7 +117,13 @@ This should yield the following -
 
 So, we see that it is a process with 7 steps. Let us get the names of each step so that we could easily get a glimpse of what is involved.
 
-    g.V('AmzLinux2Tls').until(has('process-step')).repeat(out('NEXT')).emit().values('name')
+    g.V('AmzLinux2Tls').
+    until(
+      has('process-step')).
+    repeat(
+      out('NEXT')).
+    emit().
+    values('name')
 
 This should yield the following - 
 
@@ -119,7 +143,20 @@ To inspect, that possibility we need to see what kind of edges flow from each st
 
 We accomplish that with
 
-    g.V().has('process-step', 'id', containing('AmzLinux2Tls')).bothE().as('a').project('label', 'outVId', 'inVId').by('label').by(select('a').outV().values('id')).by(select('a').inV().values('id')).dedup()
+    g.V().
+    has('process-step', 'id', 
+      containing('AmzLinux2Tls')).
+    bothE().
+    as('a').
+    project('label', 'outVId', 'inVId').
+      by('label').
+      by(select('a').
+        outV().
+        values('id')).
+      by(select('a').
+        inV().
+        values('id')).
+      dedup()
 
 This is pretty long one which yields the following
 
@@ -140,7 +177,18 @@ In fact `REFERENCE` branch is pointing to a completely different kind of vertex.
 
 So, let us now discover all the steps involved with this branching as well !
 
-    g.V('AmzLinux2Tls').until(has('process-step')).repeat(out('NEXT', 'NEXT_OPTIONAL')).emit().as('a').project('edgeLabel', 'name').by(select('a').inE().values('label')).by('name').dedup()
+    g.V('AmzLinux2Tls').
+    until(
+      has('process-step')).
+    repeat(
+      out('NEXT', 'NEXT_OPTIONAL')).
+    emit().
+    as('a').
+    project('edgeLabel', 'name').
+      by(select('a').
+        inE().
+        values('label')).
+      by('name').dedup()
 
 This gives us just this - 
 
